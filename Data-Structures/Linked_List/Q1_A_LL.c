@@ -92,28 +92,37 @@ int insertSortedLL(LinkedList *ll, int item)
 	// if (ll == NULL)
 	// 	return -1;
 	
-	if (ll->head == NULL || ll->head->item > item) {
-		insertNode(ll, 0, item);
-		return 0;}
-	
-	if (ll->head->item == item){
-		return -1;
-	
-	}
-	
-	for(int i = 0; i < ll->size; i++) {
-		ListNode *temp = findNode(ll, i);
-		if (temp->item == item){
-			return -1;
-		}
-		else if (temp->next == NULL || temp->next->item > item){
-			insertNode(ll, i+1, item);
-			return i+1;
-		}
-			
-			
-	}
+	// if (ll->head == NULL || ll->head->item > item) {
+	// 	insertNode(ll, 0, item);
+	// 	return 0;}
+	// if (ll->head->item == item){
+	// 	return -1;
+	// }
+	// for(int i = 0; i < ll->size; i++) {
+	// 	ListNode *temp = findNode(ll, i);
+	// 	if (temp->item == item){
+	// 		return -1;
+	// 	}
+	// 	else if (temp->next == NULL || temp->next->item > item){
+	// 		insertNode(ll, i+1, item);
+	// 		return i+1;
+	// 	}
+	// }
+	ListNode* pre = NULL;
+	ListNode* cur = ll->head;
+	ListNode* newnode = malloc(sizeof(ListNode));
+	if (newnode==NULL){return -1;}
+	newnode -> item = item;
+	newnode -> next = NULL;
 
+	if(ll->head == NULL){
+		newnode = ll -> head -> next;
+		ll->head =  newnode;
+	}
+	else{
+		newnode -> next = cur;
+		pre -> next = newnode;
+	}
 	
 }
 
